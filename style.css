@@ -1,0 +1,71 @@
+/* Mengatur latar belakang halaman utama */
+body {
+    font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /*warna abu-abu muda*/
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /*Membawa aplikasi ke tengah layar laptip*/
+}
+
+/* Membuat wadah (container) seukuran layar HP */
+.app-container {
+    width: 100%;
+    max-width: 480px; /*Lebar maksimal seperti layar HP*/
+    background-color: #ffffff; /* warna putih untuk aplikasinya*/
+    min-height: 100vh; /*Tinggi minimal sepanjang layar*/
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /*Memberi efek bayangan halus*/
+}
+
+/* merapikan teks judul */
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 30px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #34495e;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    box-sizing: border-box; /*Memastikan isian tidak melebihi kotak putih*/
+    font-family: inherit;
+}
+
+/* Mengubah gaya tombol agar menarik */
+button {
+    width: 100%;
+    background-color: #27ae60;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s; /*Efek mulus saat disentuh mouse*/
+}
+
+/* Warna tombol berubah sedikit saat mouse diarahkan ke sana*/
+button:hover {
+    background-color: #2ecc71;
+}

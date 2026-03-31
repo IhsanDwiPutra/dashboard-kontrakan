@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Kontrakan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>🏠 Dashboard Kontrakan</h1>
+    
+        <h2>💸 Catatan Pengeluaran</h2>
+
+        <div id="kartu-total" style="background-color: #3498db; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+            <h3 style="margin: 0; font-size: 16px; font-weight: normal;">Total Pengeluaran Saat Ini</h3>
+            <h2 id="total-uang" style="margin: 5px 0 0 0; font-size: 28px;">Rp0</h2>
+        </div>
+
+        <form id="form-pengeluaran">
+            <label for="tanggal">Tanggal:</label>
+            <input type="date" id="tanggal" required>
+
+            <label for="keterangan">Keterangan (Beli apa?):</label>
+            <input type="text" id="keterangan" placeholder="Contoh: Isi Ulang Galon" required>
+
+
+            <label for="jumlah">Jumlah Harga (Rp):</label>
+            <input type="number" id="jumlah" placeholder="Contoh: 5000" required>
+
+            <button type="submit">Catat Pengeluaran</button>
+        </form>
+        
+        <div id="riwayat-pengeluaran">
+            <h3 style="color: #2c3e50; margin-top: 30px;">Riwayat Terbaru</h3>
+            <ul id="daftar-riwayat" style="list-style-type: none; padding: 0;">
+            </ul>
+        </div>
+
+        <h2>🍚 Monitor Stok Barang</h2>
+        <form id="form-beras">
+            <label for="tanggal-beras">Tanggal Buka Karung:</label>
+            <input type="date" id="tanggal-beras" required>
+
+            <label for="berat-beras">Berat Beras (Kg):</label>
+            <input type="number" id="berat-beras" placeholder="Contoh: 5" required>
+
+            <button type="submit" style="background-color: #f39c12;">Mulai Pakai Beras</button>
+        </form>
+
+        <div id="status-beras" style="margin-top: 25px; padding: 15px; background-color: #fdf2e9; border-radius: 5px; border-left: 5px solid #e67e22;">
+            <h3 style="margin-top: 0; color: #d35400;">Status: Sedang Digunakan ⏳</h3>
+            <p id="info-beras">Beras <b>5 Kg</b> mulai dipakai pada <b>2026-03-29.</b></p>
+            <button id="btn-beras-habis" style="background-color: #e74c3c; margin-top: 10px;">Lapor: Beras Habis!</button>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 30px; padding: 15px; background: #fff; border: 1px solid #ddd; border-radius: 8px;">
+        <h3 style="text-align: center; color: #2c3e50; margin-top: 0;">📊 Grafik Pengeluaran Harian</h3>
+        <canvas id="grafikPengeluaran"></canvas>
+    </div>
+    </div> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
