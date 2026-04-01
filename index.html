@@ -8,64 +8,143 @@
 </head>
 <body>
 
-    <div class="app-container">
-        <h1>🏠 Dashboard Kontrakan</h1>
-    
-        <h2>💸 Catatan Pengeluaran</h2>
+    <div class="sidebar">
+        <h2>🏠 Dashboard Kontrakan</h2>
+        <button class="nav-btn" onclick="bukaMenu('menu-pengeluaran')">💸 Pengeluaran</button>
+        <button class="nav-btn" onclick="bukaMenu('menu-beras')">🍚 Monitor Beras</button>
+        <button class="nav-btn" onclick="bukaMenu('menu-inventaris')">📦 Inventaris</button>
+        <button class="nav-btn" onclick="bukaMenu('menu-piket')">🗓️ Jadwal Piket</button>
+    </div>
 
-        <div id="kartu-total" style="background-color: #3498db; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
-            <h3 style="margin: 0; font-size: 16px; font-weight: normal;">Total Pengeluaran Saat Ini</h3>
-            <h2 id="total-uang" style="margin: 5px 0 0 0; font-size: 28px;">Rp0</h2>
-        </div>
-
-        <form id="form-pengeluaran">
-            <label for="tanggal">Tanggal:</label>
-            <input type="date" id="tanggal" required>
-
-            <label for="keterangan">Keterangan (Beli apa?):</label>
-            <input type="text" id="keterangan" placeholder="Contoh: Isi Ulang Galon" required>
-
-
-            <label for="jumlah">Jumlah Harga (Rp):</label>
-            <input type="number" id="jumlah" placeholder="Contoh: 5000" required>
-
-            <button type="submit">Catat Pengeluaran</button>
-        </form>
+    <div class="main-content">
         
-        <div id="riwayat-pengeluaran">
-            <h3 style="color: #2c3e50; margin-top: 30px;">Riwayat Terbaru</h3>
-            <ul id="daftar-riwayat" style="list-style-type: none; padding: 0;">
-            </ul>
+        <div id="menu-pengeluaran" class="halaman-menu" style="display: block;">
+            <h2>💸 Catatan Pengeluaran</h2>
+            
+            <div id="kartu-total" style="background-color: #3498db; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                <h3 style="margin: 0; font-size: 16px; font-weight: normal;">Total Pengeluaran Saat Ini</h3>
+                <h2 id="total-uang" style="margin: 5px 0 0 0; font-size: 28px;">Rp0</h2>
+            </div>
+            
+            <form id="form-pengeluaran">
+                <label for="tanggal">Tanggal:</label>
+                <input type="date" id="tanggal" required>
+                
+                <label for="keterangan">Keterangan (Beli apa?):</label>
+                <input type="text" id="keterangan" placeholder="Contoh: Isi Ulang Galon" required>
+                
+                
+                <label for="jumlah">Jumlah Harga (Rp):</label>
+                <input type="number" id="jumlah" placeholder="Contoh: 5000" required>
+                
+                <button type="submit">Catat Pengeluaran</button>
+            </form>
+            
+            <div id="riwayat-pengeluaran">
+                <h3 style="color: #2c3e50; margin-top: 30px;">Riwayat Terbaru</h3>
+                <ul id="daftar-riwayat" style="list-style-type: none; padding: 0;">
+                </ul>
+            </div>
+
+            <div style="margin-top: 30px; padding: 15px; background: #fff; border: 1px solid #ddd; border-radius: 8px;">
+                <h3 style="text-align: center; color: #2c3e50; margin-top: 0;">📊 Grafik Pengeluaran Harian</h3>
+                <canvas id="grafikPengeluaran"></canvas>
+            </div>
         </div>
+        
+        <div id="menu-beras" class="halaman-menu">
+            <h2>🍚 Monitor Stok Beras</h2>
+            
+            <form id="form-beras">
+                <label for="tanggal-beras">Tanggal Buka Karung:</label>
+                <input type="date" id="tanggal-beras" required>
+        
+                <label for="berat-beras">Berat Beras (Kg):</label>
+                <input type="number" id="berat-beras" placeholder="Contoh: 5" required>
+        
+                <button type="submit" style="background-color: #f39c12;">Mulai Pakai Beras</button>
+            </form>
+        
+            <div id="status-beras" style="margin-top: 25px; padding: 15px; background-color: #fdf2e9; border-radius: 5px; border-left: 5px solid #e67e22;">
+                <h3 style="margin-top: 0; color: #d35400;">Status: Sedang Digunakan ⏳</h3>
+                <p id="info-beras">Beras <b>5 Kg</b> mulai dipakai pada <b>2026-03-29.</b></p>
+                <button id="btn-beras-habis" style="background-color: #e74c3c; margin-top: 10px;">Lapor: Beras Habis!</button>
+            </div>
+            
+        </div>
+        
+        <div id="menu-inventaris" class="halaman-menu">
+            <h2>📦 Inventaris Kontrakan</h2>
 
-        <h2>🍚 Monitor Stok Barang</h2>
-        <form id="form-beras">
-            <label for="tanggal-beras">Tanggal Buka Karung:</label>
-            <input type="date" id="tanggal-beras" required>
+            <form id="form-inventaris">
+                <label for="nama-barang">Nama Barang:</label>
+                <input type="text" id="nama-barang" placeholder="Contoh: Sapu Lidi, Galon, Piring" required>
+        
+                <label for="jumlah-barang">Jumlah:</label>
+                <input type="number" id="jumlah-barang" placeholder="Contoh: 1" required>
+        
+                <label for="kondisi-barang">Kondisi:</label>
+                <select id="kondisi-barang" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #bdc3c7; border-radius: 5px; font-family: inherit;">
+                    <option value="Baik">✅ Baik</option>
+                    <option value="Rusak">⚠️ Rusak</option>
+                    <option value="Habis">❌ Habis</option>
+                </select>
+        
+                <label for="pic-barang">Penanggung Jawab:</label>
+                <input type="text" id="pic-barang" placeholder="Contoh: Ihsan" required>
+        
+                <button type="submit" style="background-color: #8e44ad;">Tambah Barang</button>
+            </form>
+            
+            <div id="area-daftar-inventaris">
+                <h3 style="color: #2c3e50; margin-top: 30px;">Daftar Barang Saat Ini</h3>
+                <ul id="daftar-inventaris" style="list-style-type: none; padding: 0;">
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div id="menu-piket" class="halaman-menu">
+            <h2>🗓️ Jadwal Piket</h2>
 
-            <label for="berat-beras">Berat Beras (Kg):</label>
-            <input type="number" id="berat-beras" placeholder="Contoh: 5" required>
-
-            <button type="submit" style="background-color: #f39c12;">Mulai Pakai Beras</button>
-        </form>
-
-        <div id="status-beras" style="margin-top: 25px; padding: 15px; background-color: #fdf2e9; border-radius: 5px; border-left: 5px solid #e67e22;">
-            <h3 style="margin-top: 0; color: #d35400;">Status: Sedang Digunakan ⏳</h3>
-            <p id="info-beras">Beras <b>5 Kg</b> mulai dipakai pada <b>2026-03-29.</b></p>
-            <button id="btn-beras-habis" style="background-color: #e74c3c; margin-top: 10px;">Lapor: Beras Habis!</button>
+            <h2 style="margin-top: 40px;">🗓️ Jadwal Piket</h2>
+            
+            <form id="form-piket">
+                <label for="hari-piket">Hari:</label>
+                <select id="hari-piket" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #bdc3c7; border-radius: 5px; font-family: inherit;">
+                    <option value="Senin">Senin</option>
+                    <option value="Selasa">Selasa</option>
+                    <option value="Rabu">Rabu</option>
+                    <option value="Kamis">Kamis</option>
+                    <option value="Jumat">Jumat</option>
+                    <option value="Sabtu">Sabtu</option>
+                    <option value="Minggu">Minggu</option>
+                </select>
+        
+                <label for="tugas-piket">Tugas (Ngapain aja?):</label>
+                <input type="text" id="tugas-piket" placeholder="Contoh: Nyapu, Pel, Buang Sampah" required>
+        
+                <label for="nama-piket">Penanggung Jawab:</label>
+                <input type="text" id="nama-piket" placeholder="Nama Penghuni" required>
+        
+                <button type="submit" style="background-color: #2980b9;">Tambah Jadwal</button>
+            </form>
+        
+            <div id="area-jadwal-piket">
+                <h3 style="color: #2c3e50; margin-top: 30px;">Daftar Piket Mingguan</h3>
+                <ul id="daftar-piket" style="list-style-type: none; padding: 0;">
+                    </ul>
+            </div>
+            
         </div>
 
     </div>
 
-    <div style="margin-top: 30px; padding: 15px; background: #fff; border: 1px solid #ddd; border-radius: 8px;">
-        <h3 style="text-align: center; color: #2c3e50; margin-top: 0;">📊 Grafik Pengeluaran Harian</h3>
-        <canvas id="grafikPengeluaran"></canvas>
-    </div>
-    </div> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database-compat.js"></script>
     <script src="script.js"></script>
+
+    
 </body>
 </html>

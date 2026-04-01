@@ -1,71 +1,72 @@
-/* Mengatur latar belakang halaman utama */
+/* Reset dasar */
 body {
-    font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5; /*warna abu-abu muda*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center; /*Membawa aplikasi ke tengah layar laptip*/
+    display: flex; /* Kunci utama: Membagi layar jadi kiri (sidebar) dan kanan (konten) */
+    height: 100vh; /* Tinggi layar penuh */
+    overflow: hidden; /* Mencegah scroll ganda */
 }
 
-/* Membuat wadah (container) seukuran layar HP */
-.app-container {
-    width: 100%;
-    max-width: 480px; /*Lebar maksimal seperti layar HP*/
-    background-color: #ffffff; /* warna putih untuk aplikasinya*/
-    min-height: 100vh; /*Tinggi minimal sepanjang layar*/
+/* ================== SIDEBAR ================== */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
     padding: 20px;
     box-sizing: border-box;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /*Memberi efek bayangan halus*/
+    display: flex;
+    flex-direction: column;
 }
 
-/* merapikan teks judul */
-h1 {
-    color: #2c3e50;
+.sidebar h2 {
+    color: #ecf0f1;
     text-align: center;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
+    border-bottom: 2px solid #34495e;
+    padding-bottom: 15px;
+    margin-top: 0;
 }
 
-h2 {
-    color: #34495e;
-    margin-top: 30px;
-}
-
-label {
-    font-weight: bold;
-    display: block;
-    margin-top: 15px;
-    font-size: 14px;
-    color: #34495e;
-}
-
-input {
+.nav-btn {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #bdc3c7;
-    border-radius: 5px;
-    box-sizing: border-box; /*Memastikan isian tidak melebihi kotak putih*/
-    font-family: inherit;
-}
-
-/* Mengubah gaya tombol agar menarik */
-button {
-    width: 100%;
-    background-color: #27ae60;
-    color: white;
-    padding: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    color: #ecf0f1;
     border: none;
     border-radius: 5px;
+    text-align: left;
     font-size: 16px;
-    font-weight: bold;
     cursor: pointer;
-    margin-top: 20px;
-    transition: 0.3s; /*Efek mulus saat disentuh mouse*/
+    transition: 0.3s;
 }
 
-/* Warna tombol berubah sedikit saat mouse diarahkan ke sana*/
-button:hover {
-    background-color: #2ecc71;
+.nav-btn:hover {
+    background-color: #34495e;
+    padding-left: 20px; /* Efek geser teks saat disentuh */
 }
+
+/* ================== KONTEN UTAMA ================== */
+.main-content {
+    flex: 1; /* Mengisi sisa layar di kanan */
+    padding: 30px;
+    overflow-y: auto; /* Bisa di-scroll kalau kontennya panjang */
+}
+
+.halaman-menu {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    max-width: 800px; /* Lebar area konten dibatasi agar rapi */
+    margin: 0 auto;
+    display: none; /* SEMUA HALAMAN DISEMBUNYIKAN SECARA DEFAULT */
+}
+
+/* ================== GAYA ELEMEN FORM ================== */
+h3 { color: #2c3e50; }
+label { font-weight: bold; display: block; margin-top: 15px; color: #34495e; }
+input, select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #bdc3c7; border-radius: 5px; box-sizing: border-box; }
+button[type="submit"] { width: 100%; color: white; padding: 12px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+button[type="submit"]:hover { filter: brightness(1.1); }
